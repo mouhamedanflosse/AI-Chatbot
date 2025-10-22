@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+   url      = env("DATABASE_URL")
+}
+
+
+model User {
+  id           String     @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  fullname     String
+  clerkId      String     @unique
+  type         String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+
+  // Relations
+  domains      Domain[]
+  subscription Billings?
+}
+
+model Billings {
+  id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  plan      String
+  status    String
+  createdAt DateTime @default(now())
+
+  // One-to-one with User
+  user      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?  @unique @db.Uuid
+}
+
+model Domain {
+  id              String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  name            String
+  icon            String
+
+  // Relations
+  chatBot         ChatBot?
+  helpdesk        HelpDesk?
+  filterQuestions FilterQuestions[]
+  customer        User?              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId          String?            @db.Uuid
+}
+
+model ChatBot {
+  id               String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  welcomeMessage   String?
+  icon             String?
+
+  // One-to-one with Domain
+  Domain           Domain?  @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  domainId         String?  @unique @db.Uuid
+}
+
+model HelpDesk {
+  id         String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  question   String
+  answer     String
+
+  // One-to-one with Domain
+  Domain     Domain? @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  domainId   String? @unique @db.Uuid
+}
+
+model FilterQuestions {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  question  String
+  answer    String?
+  answered  String?
+
+  // Many-to-one with Domain
+  Domain    Domain? @relation(fields: [domainId], references: [id], onDelete: Cascade)
+  domainId  String? @db.Uuid
+}
+
+
+
+
+
