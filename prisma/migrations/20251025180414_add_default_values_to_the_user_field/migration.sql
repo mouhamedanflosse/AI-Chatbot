@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Billings" ALTER COLUMN "plan" DROP NOT NULL,
+ALTER COLUMN "plan" SET DEFAULT 'free',
+ALTER COLUMN "status" DROP NOT NULL,
+ALTER COLUMN "status" SET DEFAULT 'active';

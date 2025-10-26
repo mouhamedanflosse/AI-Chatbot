@@ -30,8 +30,8 @@ model User {
 
 model Billings {
   id        String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  plan      String
-  status    String
+  plan      String?  @default("free")
+  status    String?  @default("active")
   createdAt DateTime @default(now())
 
   // One-to-one with User
