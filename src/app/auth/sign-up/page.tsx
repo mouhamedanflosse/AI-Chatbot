@@ -1,4 +1,6 @@
+'use client'
 import SignUpFormProvider from '@afs/components/forms/sign-up/sign-up-form'
+import RegistrationFormStep from '@afs/components/forms/sign-up/registration-setp'
 
 import React from 'react'
 
@@ -10,7 +12,7 @@ const SignUp = (props: Props) => {
       <div className="flex flex-col h-full gap-3">
         <SignUpFormProvider>
           <div className="flex flex-col gap-3">
-            {/* <RegistrationFormStep></RegistrationFormStep> */}
+            <RegistrationFormStep></RegistrationFormStep>
           </div>
         </SignUpFormProvider>
       </div>

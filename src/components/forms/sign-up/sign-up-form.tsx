@@ -1,7 +1,8 @@
-import { AuthContextProvider } from '@afs/context/use-auth-context';
-import useSignUpForm from '@afs/hooks/use-sign-up';
-import React from 'react';
-import { FormProvider } from 'react-hook-form';
+"use client";
+import { AuthContextProvider } from "@afs/context/use-auth-context";
+import useSignUpForm from "@afs/hooks/use-sign-up";
+import React from "react";
+import { FormProvider } from "react-hook-form";
 
 type Props = {
   children: React.ReactNode;
@@ -16,6 +17,7 @@ const SignUpFormProvider = ({ children }: Props) => {
         <form onSubmit={onHandleSubmit} className="h-full">
           <div className="flex flex-col justify-between gap-3 h-full">
             {/* <Loader loading={loading}>{children}</Loader> */}
+            {children}
           </div>
         </form>
       </FormProvider>

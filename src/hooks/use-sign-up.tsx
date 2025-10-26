@@ -1,3 +1,4 @@
+"use client";
 import { useSignUp } from "@clerk/nextjs";
 import React, { useState } from "react";
 import { toast } from "sonner";
@@ -9,12 +10,11 @@ import {
   UserRegistrationSchema,
 } from "@afs/schems/auth-schema";
 import z from "zod";
-import { useRouter } from "next/router";
 import { onCompleteUserRegistration } from "@afs/actions/auth";
+import { RedirectType , redirect } from "next/navigation";
 const useSignUpForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { isLoaded, signUp, setActive } = useSignUp();
-  const router = useRouter();
 
   const methods = useForm<z.infer<typeof UserRegistrationSchema>>({
     resolver: zodResolver(UserRegistrationSchema),
@@ -53,7 +53,7 @@ const useSignUpForm = () => {
             });
 
             setLoading(true);
-            router.push("/dashboard");
+            redirect("/dashboard", RedirectType.push);
           }
 
           if (registered?.status === 400) {
@@ -62,7 +62,6 @@ const useSignUpForm = () => {
             });
           }
         }
-
       } catch (error) {
         const err = error as ClerkAPIResponseError;
         toast("error", {
@@ -101,8 +100,8 @@ const useSignUpForm = () => {
     methods,
     onHandleSubmit,
     onGenerateOTP,
-    loading
-  }
+    loading,
+  };
 };
 
 export default useSignUpForm;
