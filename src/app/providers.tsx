@@ -1,5 +1,6 @@
 "use client";
 import { type Metadata } from "next";
+import { ThemeProvider } from "@afs/components/ui/ThemeProvider";
 import {
   ClerkProvider,
   SignInButton,
@@ -24,29 +25,36 @@ export default function Providers({
   const path = usePathname();
 
   return (
-    <ClerkProvider>
-      <header className="flex justify-end items-center p-4 gap-4 h-16">
-        <SignedOut>
-          {path !== "/auth/sign-in" && (
-            <SignInButton>
-              <button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                Sign In
-              </button>
-            </SignInButton>
-          )}
-          {path !== "/auth/sign-up" && (
-            <SignUpButton>
-              <button className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                Sign Up
-              </button>
-            </SignUpButton>
-          )}
-        </SignedOut>
-        <SignedIn>
-          <UserButton />
-        </SignedIn>
-      </header>
-      {children}
-    </ClerkProvider>
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="light"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <ClerkProvider>
+        <header className="flex justify-end items-center p-4 gap-4 h-16">
+          <SignedOut>
+            {path !== "/auth/sign-in" && (
+              <SignInButton>
+                <button className="bg-background border border-accent px-2 py-1 rounded-md cursor-pointer">
+                  Sign In
+                </button>
+              </SignInButton>
+            )}
+            {path !== "/auth/sign-up" && (
+              <SignUpButton>
+                <button className="bg-background border border-accent px-2 py-1 rounded-md cursor-pointer">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            )}
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </header>
+        {children}
+      </ClerkProvider>
+    </ThemeProvider>
   );
 }
