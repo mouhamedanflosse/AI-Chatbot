@@ -11,6 +11,8 @@ import {
 } from "@clerk/nextjs";
 import "./globals.css";
 import { usePathname } from "next/navigation";
+import { Button } from "@afs/components/ui/button";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Clerk Next.js Quickstart",
@@ -35,18 +37,14 @@ export default function Providers({
         <header className="flex justify-end items-center p-4 gap-4 h-16">
           <SignedOut>
             {path !== "/auth/sign-in" && (
-              <SignInButton>
-                <button className="bg-background border border-accent px-2 py-1 rounded-md cursor-pointer">
-                  Sign In
-                </button>
-              </SignInButton>
+              <Button className="px-6">
+                <Link href="/auth/sign-in">Sign n</Link>
+              </Button>
             )}
             {path !== "/auth/sign-up" && (
-              <SignUpButton>
-                <button className="bg-background border border-accent px-2 py-1 rounded-md cursor-pointer">
-                  Sign Up
-                </button>
-              </SignUpButton>
+              <Button className="px-6">
+                <Link href="/auth/sign-up">Sign Up</Link>
+              </Button>
             )}
           </SignedOut>
           <SignedIn>
