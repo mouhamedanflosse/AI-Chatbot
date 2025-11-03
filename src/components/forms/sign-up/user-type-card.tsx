@@ -29,7 +29,7 @@ const UserTypeCard = ({
       <Card
         className={cn(
           "w-full cursor-pointer py-2 px-2",
-          userType == value && "border-accent"
+          userType == value ? "border-accent" : "border-accent/30"
         )}
       >
         <CardContent className="flex justify-between p-2">
@@ -37,7 +37,7 @@ const UserTypeCard = ({
             <Card
               className={cn(
                 "flex justify-center p-3",
-                userType == value && "border-accent"
+                userType == value ? "border-accent" : "border-accent/30"
               )}
             >
               <User

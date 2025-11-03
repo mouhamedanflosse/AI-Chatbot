@@ -29,9 +29,9 @@ const TypeSelectionForm = ({ register, setUserType, userType }: Props) => {
         register={register}
         setUserType={setUserType}
         userType={userType}
-        value="owner"
-        title="I own a business"
-        text="Setting up my account for my company."
+        value="student"
+        title="Im student "
+        text="Setting up my account for school."
       />
     </>
   );
