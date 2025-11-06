@@ -1,4 +1,4 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -32,13 +32,11 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* ---------- Global tokens ---------- */
 :root {
   --radius: 0.625rem;
 
-  /* Light mode (editable) */
-  --background: #f7f7ea; /* soft cream for light theme */
-  --foreground: #19260b; /* dark green-ish text on light bg */
+  --background: #f7f7ea; 
+  --foreground: #19260b; 
 
   --card: #ffffff;
   --card-foreground: #19260b;
@@ -46,7 +44,7 @@
   --popover: #ffffff;
   --popover-foreground: #19260b;
 
-  --primary: #e8f35a; /* bright lime for accents in light mode */
+  --primary: #e8f35a; 
   --primary-foreground: #0a0a0a;
 
   --secondary: #dfe7c0;
@@ -64,24 +62,20 @@
   --ring: #dfeaa2;
 }
 
-/* ---------- Dark theme (uses your provided colors) ---------- */
 .dark {
   --radius: 0.625rem;
 
-  /* Provided exact colors */
-  --background: #1e2e12; /* deep olive green (from you) */
-  --foreground: #f1fa9c; /* pale lime/yellow text (from you) */
+  --background: #1e2e12;
+  --foreground: #f1fa9c; 
 
-  /* Cards / surfaces */
-  --card: #233217; /* slightly lighter than background for cards */
+  --card: #233217; 
   --card-foreground: #f7fbd0;
 
   --popover: #222f17;
   --popover-foreground: #f7fbd0;
 
-  /* Accent / primary (use the text color as accent, for the bold look) */
-  --primary: #f1fa9c; /* same pale lime for buttons/headers */
-  --primary-foreground: #16210b; /* dark text when primary is used as background */
+  --primary: #f1fa9c;
+  --primary-foreground: #16210b;
 
   --secondary: #2a3b18;
   --secondary-foreground: #e7f2b2;
@@ -98,7 +92,6 @@
   --ring: rgba(241, 250, 156, 0.14);
 }
 
-/* ---------- base layer ---------- */
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -107,11 +100,9 @@
     @apply bg-background text-foreground;
   }
 
-  /* Example usage tweaks to match the design more strongly */
   h1,
   h2,
   h3 {
-    /* big bold headings use the accent color in dark mode */
     color: var(--accent);
   }
 
@@ -126,4 +117,159 @@
     border-radius: var(--radius);
     padding: 0.5rem 1rem;
   }
+} */
+
+@import "tailwindcss";
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;600&display=swap");
+
+/* ===============================
+   THEME CONFIGURATION (Tailwind v4)
+   =============================== */
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Poppins", sans-serif;
+
+  --radius: 0.75rem;
+
+  /* Light Theme */
+  --background: 220 22% 98%;
+  --foreground: 218 17% 12%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 218 17% 12%;
+  --card-border: 206 45% 90%;
+  --card-shadow: 342 89% 59% / 8%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 218 17% 12%;
+
+  --primary: 342 89% 55%;
+  --primary-hover: 342 85% 50%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 342 30% 92%;
+  --secondary-hover: 342 30% 85%;
+  --secondary-foreground: 218 17% 15%;
+
+  --muted: 342 20% 92%;
+  --muted-foreground: 215.4 16.3% 45.9%;
+
+  --accent: 342 89% 55%;
+  --accent-hover: 342 85% 50%;
+  --accent-foreground: 210 40% 98%;
+
+  --success: 142 72% 29%;
+  --success-foreground: 210 40% 98%;
+
+  --destructive: 0 80% 58%;
+  --destructive-hover: 0 70% 50%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 342 20% 92%;
+  --input: 342 20% 92%;
+  --ring: 342 89% 55%;
+
+  /* Sidebar */
+  --sidebar-background: 220 22% 98%;
+  --sidebar-foreground: 218 17% 12%;
+  --sidebar-primary: 342 89% 59%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 342 30% 92%;
+  --sidebar-accent-foreground: 218 17% 12%;
+  --sidebar-border: 342 20% 92%;
+  --sidebar-ring: 342 89% 55%;
+}
+
+@theme .dark {
+  --background: 218 17% 15%;
+  --foreground: 210 40% 98%;
+
+  --card: 220 22% 18%;
+  --card-foreground: 210 40% 98%;
+  --card-border: 342 20% 30%;
+  --card-shadow: 342 89% 59% / 8%;
+
+  --popover: 220 22% 18%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 342 89% 55%;
+  --primary-hover: 342 87% 53%;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 342 30% 30%;
+  --secondary-hover: 342 30% 25%;
+  --secondary-foreground: 210 40% 98%;
+
+  --muted: 342 20% 30%;
+  --muted-foreground: 215 20.2% 75%;
+
+  --accent: 342 89% 65%;
+  --accent-hover: 342 80% 60%;
+  --accent-foreground: 210 40% 98%;
+
+  --border: 342 20% 30%;
+  --input: 342 20% 30%;
+  --ring: 342 89% 59%;
+
+  --sidebar-background: 218 17% 15%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-primary: 342 89% 65%;
+  --sidebar-primary-foreground: 210 40% 98%;
+  --sidebar-accent: 342 30% 30%;
+  --sidebar-accent-foreground: 210 40% 98%;
+  --sidebar-border: 342 20% 30%;
+  --sidebar-ring: 342 89% 59%;
+}
+
+/* ===============================
+   BASE STYLES
+   =============================== */
+@layer base {
+  * {
+    @apply border-[var(--border)];
+  }
+
+  html {
+    font-family: var(--font-display);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[hsl(var(--background))] text-[hsl(var(--foreground))] antialiased;
+    font-family: var(--font-sans);
+  }
+
+  /* Card styling */
+  .card {
+    @apply border-[hsl(var(--card-border))] rounded-lg border bg-[hsl(var(--card))] shadow-lg backdrop-blur-lg transition-all duration-200 hover:border-[hsl(var(--primary-hover))] hover:shadow-md hover:shadow-[hsl(var(--primary)/0.1)];
+  }
+
+  /* Buttons */
+  .button {
+    @apply rounded-md transition-all duration-200 hover:translate-y-[-1px] focus:ring-2 focus:ring-[hsl(var(--ring))] focus:ring-offset-2 active:translate-y-[1px];
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Button hover */
+  .button:hover {
+    background-color: hsl(var(--primary-hover));
+  }
+}
+
+/* ===============================
+   LOADING MESSAGE
+   =============================== */
+.loadingMessage::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  z-index: 10;
+  left: -30px;
+  top: -12px;
+  border: 6px solid transparent;
+  border-right: 20px solid hsl(var(--secondary));
+  transform: rotate(30deg);
 }

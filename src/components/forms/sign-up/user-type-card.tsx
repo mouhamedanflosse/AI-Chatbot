@@ -29,7 +29,7 @@ const UserTypeCard = ({
       <Card
         className={cn(
           "w-full cursor-pointer py-2 px-2",
-          userType == value ? "border-accent" : "border-accent/30"
+          userType == value ? "border-[hsl(var(--primary))]" : "border-[hsl(var(--primary))]/30"
         )}
       >
         <CardContent className="flex justify-between p-2">
@@ -37,13 +37,13 @@ const UserTypeCard = ({
             <Card
               className={cn(
                 "flex justify-center p-3",
-                userType == value ? "border-accent" : "border-accent/30"
+                userType == value ? "border-[hsl(var(--primary))]" : "border-[hsl(var(--primary))]/30"
               )}
             >
               <User
                 size={30}
                 className={cn(
-                  userType == value ? "text-accent" : "text-gray-400"
+                  userType == value ? "text-[hsl(var(--primary))]" : "text-gray-400"
                 )}
               />
             </Card>
@@ -51,7 +51,7 @@ const UserTypeCard = ({
               <CardDescription className="text-iridium">
                 {title}
               </CardDescription>
-              <CardDescription className="text-gray-200">
+              <CardDescription className="text-[hsl(var(--accent))]">
                 {text}
               </CardDescription>
             </div>

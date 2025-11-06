@@ -3,10 +3,11 @@ import SignUpFormProvider from '@afs/components/forms/sign-up/sign-up-form'
 import RegistrationFormStep from '@afs/components/forms/sign-up/registration-setp'
 
 import React from 'react'
+import ButtonHandler from '@afs/components/forms/sign-up/button-handler'
 
-type Props = {}
+// type Props = {}
 
-const SignUp = (props: Props) => {
+const SignUp = () => {
   return (
     <div className="flex-1 py-36 md:px-16 w-full">
       <div className="flex flex-col h-full gap-3">
@@ -14,7 +15,7 @@ const SignUp = (props: Props) => {
           <div className="flex flex-col gap-3">
             <RegistrationFormStep />
           </div>
-            test
+            <ButtonHandler />
         </SignUpFormProvider>
       </div>
     </div>
