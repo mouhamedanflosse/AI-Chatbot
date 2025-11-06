@@ -3,7 +3,14 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuthContextHook } from "@afs/context/use-auth-context";
 import TypeSelectionForm from "./type-selection-form";
+import dynamic from "next/dynamic";
 
+import { Spinner } from "@afs/components/ui/spinner";
+
+const DetailedForm = dynamic(() => import("./account-details"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
 // type Props = {};
 
 export default function RegistrationSetp() {
@@ -33,6 +40,7 @@ export default function RegistrationSetp() {
       );
 
     case 2:
+      return <DetailedForm register={register} errors={errors} />;
     case 3:
     case 4:
   }
