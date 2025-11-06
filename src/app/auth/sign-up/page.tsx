@@ -4,6 +4,7 @@ import RegistrationFormStep from '@afs/components/forms/sign-up/registration-set
 
 import React from 'react'
 import ButtonHandler from '@afs/components/forms/sign-up/button-handler'
+import HighLightBar from '@afs/components/forms/sign-up/highlight-bar'
 
 // type Props = {}
 
@@ -14,8 +15,9 @@ const SignUp = () => {
         <SignUpFormProvider>
           <div className="flex flex-col gap-3">
             <RegistrationFormStep />
-          </div>
             <ButtonHandler />
+          </div>
+          <HighLightBar />
         </SignUpFormProvider>
       </div>
     </div>
