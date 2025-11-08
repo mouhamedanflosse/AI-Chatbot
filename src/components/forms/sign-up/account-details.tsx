@@ -1,13 +1,20 @@
 import { USER_REGISTRATION_FORM } from "@afs/constants/form-generator";
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
 import FormGenerator from "../form-generator";
+import { UserRegistrationProps } from "@afs/schems/auth-schema";
 
 type Props = {
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<UserRegistrationProps>;
   errors: FieldErrors<FieldValues>;
+  setUserDetails: UseFormSetValue<UserRegistrationProps>;
 };
 
-function AccountDetailsForm({ register, errors }: Props) {
+function AccountDetailsForm({ register, errors , setUserDetails }: Props) {
   return (
     <>
       <h2 className="text-gravel md:text-4xl font-bold">Account details</h2>
@@ -19,7 +26,8 @@ function AccountDetailsForm({ register, errors }: Props) {
           {...field}
           errors={errors}
           register={register}
-          name={field.name}
+          name={field.name as keyof UserRegistrationProps}
+          setUserDetails={setUserDetails}
         />
       ))}
     </>

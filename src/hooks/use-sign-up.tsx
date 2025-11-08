@@ -11,7 +11,7 @@ import {
 } from "@afs/schems/auth-schema";
 import z from "zod";
 import { onCompleteUserRegistration } from "@afs/actions/auth";
-import { RedirectType , redirect } from "next/navigation";
+import { RedirectType, redirect } from "next/navigation";
 const useSignUpForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const { isLoaded, signUp, setActive } = useSignUp();

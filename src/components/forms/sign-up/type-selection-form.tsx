@@ -1,10 +1,11 @@
 import React from "react";
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 import UserTypeCard from "./user-type-card";
+import { UserRegistrationProps } from "@afs/schems/auth-schema";
 
 type Props = {
-  register: UseFormRegister<FieldValues>;
-  setUserType: React.Dispatch<React.SetStateAction<"owner" | "student">>;
+  register: UseFormRegister<UserRegistrationProps>;
+  setUserType: UseFormSetValue<UserRegistrationProps>;
   userType: "owner" | "student";
 };
 

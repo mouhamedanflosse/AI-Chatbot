@@ -6,24 +6,36 @@ import TypeSelectionForm from "./type-selection-form";
 import dynamic from "next/dynamic";
 
 import { Spinner } from "@afs/components/ui/spinner";
+import useSignUpForm from "@afs/hooks/use-sign-up";
 
 const DetailedForm = dynamic(() => import("./account-details"), {
+  ssr: false,
+  loading: () => <Spinner />,
+});
+const OtpForm = dynamic(() => import("./otp-form"), {
   ssr: false,
   loading: () => <Spinner />,
 });
 // type Props = {};
 
 export default function RegistrationSetp() {
+  // const {
+  //   register,
+  //   setValue,
+  //   formState: { errors },
+  // } = useForm();
+
+  const [onOTP, setOnOTP] = useState<string>("opt1234");
+  const [onUser, setOnUser] = useState<"owner" | "student">("owner");
+
+  const { currentStep } = useAuthContextHook();
+
+  const { methods } = useSignUpForm();
   const {
     register,
     setValue,
     formState: { errors },
-  } = useForm();
-
-  const [onOTP, setOnOTP] = useState<string>();
-  const [onUser, setOnUser] = useState<"owner" | "student">("owner");
-
-  const { currentStep } = useAuthContextHook();
+  } = methods;
 
   setValue("otp", onOTP);
 
@@ -32,7 +44,7 @@ export default function RegistrationSetp() {
       return (
         <div>
           <TypeSelectionForm
-            setUserType={setOnUser}
+            setUserType={setValue}
             userType={onUser}
             register={register}
           ></TypeSelectionForm>
@@ -40,8 +52,9 @@ export default function RegistrationSetp() {
       );
 
     case 2:
-      return <DetailedForm register={register} errors={errors} />;
+      return <DetailedForm register={register} errors={errors} setUserDetails={setValue} />;
     case 3:
+      // return <OtpForm onOtp={onOTP} setOnOtp={setOnOTP} />;
     case 4:
   }
 }

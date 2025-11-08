@@ -3,17 +3,18 @@ import { Card, CardContent, CardDescription } from "@afs/components/ui/card";
 import { Input } from "@afs/components/ui/input";
 import { Label } from "@afs/components/ui/label";
 import { cn } from "@afs/lib/utils";
+import { UserRegistrationProps } from "@afs/schems/auth-schema";
 import { User } from "lucide-react";
 import React from "react";
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 
 type Props = {
   value: string;
   title: string;
   text: string;
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<UserRegistrationProps>;
   userType: "owner" | "student";
-  setUserType: React.Dispatch<React.SetStateAction<"owner" | "student">>;
+  setUserType: UseFormSetValue<UserRegistrationProps>;
 };
 
 const UserTypeCard = ({
@@ -29,7 +30,9 @@ const UserTypeCard = ({
       <Card
         className={cn(
           "w-full cursor-pointer py-2 px-2",
-          userType == value ? "border-[hsl(var(--primary))]" : "border-[hsl(var(--primary))]/30"
+          userType == value
+            ? "border-[hsl(var(--primary))]"
+            : "border-[hsl(var(--primary))]/30"
         )}
       >
         <CardContent className="flex justify-between p-2">
@@ -37,13 +40,17 @@ const UserTypeCard = ({
             <Card
               className={cn(
                 "flex justify-center p-3",
-                userType == value ? "border-[hsl(var(--primary))]" : "border-[hsl(var(--primary))]/30"
+                userType == value
+                  ? "border-[hsl(var(--primary))]"
+                  : "border-[hsl(var(--primary))]/30"
               )}
             >
               <User
                 size={30}
                 className={cn(
-                  userType == value ? "text-[hsl(var(--primary))]" : "text-gray-400"
+                  userType == value
+                    ? "text-[hsl(var(--primary))]"
+                    : "text-gray-400"
                 )}
               />
             </Card>
@@ -65,7 +72,7 @@ const UserTypeCard = ({
             >
               <Input
                 {...register("type", {
-                  onChange: (event) => setUserType(event.target.value),
+                  onChange: (event) => setUserType("type", event.target.value),
                 })}
                 value={value}
                 id={value}

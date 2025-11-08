@@ -2,9 +2,17 @@
 import { Input } from "@afs/components/ui/input";
 import { Label } from "@afs/components/ui/label";
 import React from "react";
-import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { Textarea } from "@afs/components/ui/textarea";
+import { UserRegistrationProps } from "@afs/schems/auth-schema";
+
+
 
 type Props = {
   type: "text" | "email" | "password";
@@ -13,10 +21,11 @@ type Props = {
   label?: string;
   placeholder: string;
   register: UseFormRegister<any>;
-  name: string;
+  name: keyof UserRegistrationProps;
   errors: FieldErrors<FieldValues>;
   lines?: number;
   form?: string;
+  setUserDetails?: UseFormSetValue<UserRegistrationProps>;
 };
 
 const FormGenerator = ({
@@ -30,10 +39,11 @@ const FormGenerator = ({
   errors,
   lines,
   form,
+  setUserDetails,
 }: Props) => {
   switch (inputType) {
     case "input":
-        console.log("data" ,name , errors , type);
+      console.log("data", name, errors, type);
       return (
         <Label className="flex flex-col gap-2" htmlFor={`input-${label}`}>
           {label && label}
@@ -42,7 +52,10 @@ const FormGenerator = ({
             type={type}
             placeholder={placeholder}
             form={form}
-            {...register(name)}
+            {...register(name, {
+              onChange: (e : React.ChangeEvent<HTMLInputElement>) : void =>
+                setUserDetails && setUserDetails(name, e.target.value),
+            })}
           />
 
           <ErrorMessage
@@ -52,8 +65,8 @@ const FormGenerator = ({
               console.log("am here", message),
               (
                 <p className="text-red-400 mt-2">
-                  {/* {message === "Required" ? "" : message} */}
-                  {message}
+                  {message === "Required" ? "" : message}
+                  {/* {message} */}
                 </p>
               )
             )}
