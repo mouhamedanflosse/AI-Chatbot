@@ -13,6 +13,7 @@ import "./globals.css";
 import { usePathname } from "next/navigation";
 import { Button } from "@afs/components/ui/button";
 import Link from "next/link";
+import { Toaster } from "@afs/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "Clerk Next.js Quickstart",

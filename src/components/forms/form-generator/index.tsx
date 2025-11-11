@@ -43,7 +43,6 @@ const FormGenerator = ({
 }: Props) => {
   switch (inputType) {
     case "input":
-      console.log("data", name, errors, type);
       return (
         <Label className="flex flex-col gap-2" htmlFor={`input-${label}`}>
           {label && label}
@@ -66,7 +65,6 @@ const FormGenerator = ({
               (
                 <p className="text-red-400 mt-2">
                   {message === "Required" ? "" : message}
-                  {/* {message} */}
                 </p>
               )
             )}

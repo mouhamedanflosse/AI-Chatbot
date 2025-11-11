@@ -6,10 +6,18 @@ import { FormProvider } from "react-hook-form";
 
 type Props = {
   children: React.ReactNode;
+  methods: ReturnType<typeof useSignUpForm>["methods"];
+  onHandleSubmit: ReturnType<typeof useSignUpForm>["onHandleSubmit"];
+  loading: ReturnType<typeof useSignUpForm>["loading"];
 };
 
-const SignUpFormProvider = ({ children }: Props) => {
-  const { methods, onHandleSubmit, loading } = useSignUpForm();
+const SignUpFormProvider = ({
+  children,
+  methods,
+  onHandleSubmit,
+  loading,
+}: Props) => {
+  // const { methods, onHandleSubmit, loading } = useSignUpForm();
 
   return (
     <AuthContextProvider>

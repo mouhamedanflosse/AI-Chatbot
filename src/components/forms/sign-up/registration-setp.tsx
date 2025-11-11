@@ -16,9 +16,11 @@ const OtpForm = dynamic(() => import("./otp-form"), {
   ssr: false,
   loading: () => <Spinner />,
 });
-// type Props = {};
+type Props = {
+  methods: ReturnType<typeof useSignUpForm>["methods"];
+};
 
-export default function RegistrationSetp() {
+export default function RegistrationSetp({ methods }: Props) {
   // const {
   //   register,
   //   setValue,
@@ -30,7 +32,7 @@ export default function RegistrationSetp() {
 
   const { currentStep } = useAuthContextHook();
 
-  const { methods } = useSignUpForm();
+  // const { methods } = useSignUpForm();
   const {
     register,
     setValue,
@@ -52,9 +54,15 @@ export default function RegistrationSetp() {
       );
 
     case 2:
-      return <DetailedForm register={register} errors={errors} setUserDetails={setValue} />;
+      return (
+        <DetailedForm
+          register={register}
+          errors={errors}
+          setUserDetails={setValue}
+        />
+      );
     case 3:
-      // return <OtpForm onOtp={onOTP} setOnOtp={setOnOTP} />;
+    // return <OtpForm onOtp={onOTP} setOnOtp={setOnOTP} />;
     case 4:
   }
 }

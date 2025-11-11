@@ -6,12 +6,26 @@ import useSignUpForm from "@afs/hooks/use-sign-up";
 import Link from "next/link";
 import { useFormContext } from "react-hook-form";
 
-function ButtonHandler() {
+type Props = {
+  methods: ReturnType<typeof useSignUpForm>["methods"];
+  onHandleSubmit: ReturnType<typeof useSignUpForm>["onHandleSubmit"];
+  loading: ReturnType<typeof useSignUpForm>["loading"];
+  onGenerateOTP: ReturnType<typeof useSignUpForm>["onGenerateOTP"];
+};
+
+function ButtonHandler({
+  methods,
+  onHandleSubmit,
+  loading,
+  onGenerateOTP,
+}: Props) {
   const { currentStep, setCurrentStep } = useAuthContextHook();
   const { formState, getFieldState, getValues } = useFormContext();
-  const { onGenerateOTP } = useSignUpForm();
+  // const {methods} = useSignUpForm()
+  // const { onGenerateOTP } = useSignUpForm();
 
   const { isDirty: isName } = getFieldState("fullname", formState);
+  const fullName = getFieldState("fullname", formState);
   const { isDirty: isEmail } = getFieldState("email", formState);
   const { isDirty: isPassword } = getFieldState("password", formState);
 
@@ -20,9 +34,23 @@ function ButtonHandler() {
       return (
         <div className="w-full flex flex-col gap-3 items-center">
           <Button
-            type="submit"
+            type="button"
             className="w-full bg-[hsl(var(--primary))]/80 border py-1 cursor-pointer"
             variant="default"
+            onClick={() => {
+              console.log(fullName, getValues());
+              // console.log("methods" , methods.getValues())
+              if (isName && isEmail && isPassword) {
+                console.log(
+                  "you did successfully push the MF button but and the function has been triggered"
+                );
+                onGenerateOTP(
+                  getValues("email"),
+                  getValues("password"),
+                  setCurrentStep
+                );
+              }
+            }}
           >
             Create an account
           </Button>
