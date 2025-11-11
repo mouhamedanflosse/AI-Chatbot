@@ -52,7 +52,7 @@ function ButtonHandler({
               }
             }}
           >
-            Create an account
+            continue
           </Button>
           <div>
             already have an account?{" "}
@@ -70,7 +70,7 @@ function ButtonHandler({
             className="w-full bg-[hsl(var(--primary))]/80 border py-1 cursor-pointer"
             variant="default"
           >
-            Create an account
+            create an account
           </Button>
           <div>
             already have an account?{" "}

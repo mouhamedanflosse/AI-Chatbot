@@ -62,7 +62,12 @@ export default function RegistrationSetp({ methods }: Props) {
         />
       );
     case 3:
-    // return <OtpForm onOtp={onOTP} setOnOtp={setOnOTP} />;
+      return (
+        <OtpForm
+          setOtp={setValue}
+          register={register}
+        />
+      );
     case 4:
   }
 }

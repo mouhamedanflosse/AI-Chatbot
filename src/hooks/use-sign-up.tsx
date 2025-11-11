@@ -26,6 +26,7 @@ const useSignUpForm = () => {
 
   const onHandleSubmit = methods.handleSubmit(
     async (values: UserRegistrationProps) => {
+      console.log("form values", values);
       if (!isLoaded) return;
 
       try {
@@ -88,6 +89,8 @@ const useSignUpForm = () => {
       await signUp.prepareEmailAddressVerification({
         strategy: "email_code",
       });
+
+      console.log("OTP sent to email");
 
       onNext((prev) => prev + 1);
     } catch (error) {
