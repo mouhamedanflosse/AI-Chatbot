@@ -28,6 +28,6 @@ export const onCompleteUserRegistration = async (
       return { status: 200, user: registered };
     }
   } catch (error) {
-    return { status: 400 };
+    return { status: 400 , error};
   }
 };

@@ -36,11 +36,15 @@ const useSignUpForm = () => {
         });
 
         if (completeSignUp.status !== "complete") {
+          console.log("something went wrong");
           return { message: "Something went wrong!" };
         }
 
         if (completeSignUp.status === "complete") {
-          if (!signUp.createdUserId) return;
+          if (!signUp.createdUserId) {
+            console.log("No created user ID found");
+            return;
+          }
 
           const registered = await onCompleteUserRegistration(
             values.fullname,
@@ -58,6 +62,8 @@ const useSignUpForm = () => {
           }
 
           if (registered?.status === 400) {
+
+            console.log("something went wrong", registered.error)
             toast("error", {
               description: "Something went wrong!",
             });
