@@ -2,6 +2,7 @@
 import { Card, CardContent, CardDescription } from "@afs/components/ui/card";
 import { Input } from "@afs/components/ui/input";
 import { Label } from "@afs/components/ui/label";
+import { useAuthContextHook } from "@afs/context/use-auth-context";
 import { cn } from "@afs/lib/utils";
 import { UserRegistrationProps } from "@afs/schems/auth-schema";
 import { User } from "lucide-react";
@@ -13,8 +14,12 @@ type Props = {
   title: string;
   text: string;
   register: UseFormRegister<UserRegistrationProps>;
-  userType: "owner" | "student";
+
+  userType: string;
   setUserType: UseFormSetValue<UserRegistrationProps>;
+  // test
+  setType: React.Dispatch<React.SetStateAction<"owner" | "student">>;
+  type: "owner" | "student";
 };
 
 const UserTypeCard = ({
@@ -24,13 +29,17 @@ const UserTypeCard = ({
   title,
   userType,
   value,
+  type,
+  setType,
 }: Props) => {
+  // const [type, setType] = React.useState<string>(value);
+
   return (
     <Label htmlFor={value} className="mt-6">
       <Card
         className={cn(
           "w-full cursor-pointer py-2 px-2",
-          userType == value
+          type == value
             ? "border-[hsl(var(--primary))]"
             : "border-[hsl(var(--primary))]/30"
         )}
@@ -40,7 +49,7 @@ const UserTypeCard = ({
             <Card
               className={cn(
                 "flex justify-center p-3",
-                userType == value
+                type == value
                   ? "border-[hsl(var(--primary))]"
                   : "border-[hsl(var(--primary))]/30"
               )}
@@ -48,9 +57,7 @@ const UserTypeCard = ({
               <User
                 size={30}
                 className={cn(
-                  userType == value
-                    ? "text-[hsl(var(--primary))]"
-                    : "text-gray-400"
+                  type == value ? "text-[hsl(var(--primary))]" : "text-gray-400"
                 )}
               />
             </Card>
@@ -67,12 +74,18 @@ const UserTypeCard = ({
             <div
               className={cn(
                 "w-4 h-4 rounded-full",
-                userType == value ? "bg-accent" : "bg-background"
+                type == value ? "bg-accent" : "bg-background"
               )}
             >
               <Input
                 {...register("type", {
-                  onChange: (event) => setUserType("type", event.target.value),
+                  onChange: (event) => {
+                    console.log("Selected type:", type);
+                    setType(event.target.value);
+                    setUserType("type", event.target.value);
+                    console.log("rendered type:", userType);
+                    console.log(register("type"));
+                  },
                 })}
                 value={value}
                 id={value}

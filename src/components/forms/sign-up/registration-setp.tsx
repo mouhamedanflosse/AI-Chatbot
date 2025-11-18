@@ -39,7 +39,7 @@ export default function RegistrationSetp({ methods }: Props) {
     formState: { errors },
   } = methods;
 
-  setValue("otp", onOTP);
+  // setValue("otp", onOTP);
 
   switch (currentStep) {
     case 1:

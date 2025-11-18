@@ -1,5 +1,10 @@
 import React from "react";
-import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
+import {
+  FieldValues,
+  useFormContext,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
 import UserTypeCard from "./user-type-card";
 import { UserRegistrationProps } from "@afs/schems/auth-schema";
 
@@ -10,6 +15,9 @@ type Props = {
 };
 
 const TypeSelectionForm = ({ register, setUserType, userType }: Props) => {
+  const { formState, getFieldState, getValues } = useFormContext();
+
+  const [Type, setType] = React.useState<"owner" | "student">("owner");
   return (
     <>
       <h2 className="text-gravel md:text-4xl font-bold">Create an account</h2>
@@ -22,6 +30,8 @@ const TypeSelectionForm = ({ register, setUserType, userType }: Props) => {
         register={register}
         setUserType={setUserType}
         userType={userType}
+        setType={setType}
+        type={Type}
         value="owner"
         title="I own a business"
         text="Setting up my account for my company."
@@ -30,6 +40,8 @@ const TypeSelectionForm = ({ register, setUserType, userType }: Props) => {
         register={register}
         setUserType={setUserType}
         userType={userType}
+        setType={setType}
+        type={Type}
         value="student"
         title="Im student "
         text="Setting up my account for school."
