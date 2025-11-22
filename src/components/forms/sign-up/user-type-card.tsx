@@ -80,11 +80,7 @@ const UserTypeCard = ({
               <Input
                 {...register("type", {
                   onChange: (event) => {
-                    console.log("Selected type:", type);
                     setType(event.target.value);
-                    setUserType("type", event.target.value);
-                    console.log("rendered type:", userType);
-                    console.log(register("type"));
                   },
                 })}
                 value={value}
