@@ -13,6 +13,7 @@ import { Button } from "@afs/components/ui/button";
 import useSignInForm from "@afs/hooks/use-sign-in";
 import { USER_LOGIN_FORM } from "@afs/constants/form-generator";
 import FormGenerator from "../form-generator";
+import Link from "next/link";
 
 type Props = {
   methods: ReturnType<typeof useSignInForm>["methods"];
@@ -78,13 +79,21 @@ export default function LoginForm({ methods, onHandleSubmit, loading }: Props) {
             </div>
 
             <div>
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full cursor-pointer"
-              >
-                {loading ? "Signing in…" : "Sign in"}
-              </Button>
+              <div className="w-full flex flex-col gap-3 items-center">
+                <Button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full cursor-pointer"
+                >
+                  {loading ? "Signing in…" : "Sign in"}
+                </Button>
+                <p>
+                  Don’t have an account?{" "}
+                  <Link href="/auth/sign-up" className="font-bold text-[hsl(var(--primary))]">
+                    Create one
+                  </Link>
+                </p>
+              </div>
             </div>
           </form>
         </CardContent>

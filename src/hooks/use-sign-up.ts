@@ -26,22 +26,24 @@ const useSignUpForm = () => {
 
   const onHandleSubmit = methods.handleSubmit(
     async (values: UserRegistrationProps) => {
+      setLoading(true);
       console.log("form values", values);
       if (!isLoaded) return;
 
       try {
-        setLoading(true);
         const completeSignUp = await signUp.attemptEmailAddressVerification({
           code: values.otp,
         });
 
         if (completeSignUp.status !== "complete") {
-          console.log("something went wrong");
+          console.log("something went wrong 1");
+          setLoading(false);
           return { message: "Something went wrong!" };
         }
 
         if (completeSignUp.status === "complete") {
           if (!signUp.createdUserId) {
+            setLoading(false);
             console.log("No created user ID found");
             return;
           }
@@ -57,13 +59,13 @@ const useSignUpForm = () => {
               session: completeSignUp.createdSessionId,
             });
 
-            setLoading(true);
+            setLoading(false);
             redirect("/dashboard", RedirectType.push);
           }
 
           if (registered?.status === 400) {
-
-            console.log("something went wrong", registered.error)
+            setLoading(false);
+            console.log("something went wrong 400", registered.error);
             toast("error", {
               description: "Something went wrong!",
             });
@@ -71,6 +73,8 @@ const useSignUpForm = () => {
         }
       } catch (error) {
         const err = error as ClerkAPIResponseError;
+        setLoading(false);
+        console.log("the catch block");
         toast("error", {
           description: err.errors[0].longMessage,
         });

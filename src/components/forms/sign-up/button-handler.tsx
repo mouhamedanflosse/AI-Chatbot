@@ -37,13 +37,11 @@ function ButtonHandler({
             type="button"
             className="w-full bg-[hsl(var(--primary))]/80 border py-1 cursor-pointer"
             variant="default"
+            disabled={loading}
             onClick={() => {
               console.log(fullName, getValues());
               // console.log("methods" , methods.getValues())
               if (isName && isEmail && isPassword) {
-                console.log(
-                  "you did successfully push the MF button but and the function has been triggered"
-                );
                 onGenerateOTP(
                   getValues("email"),
                   getValues("password"),
@@ -52,7 +50,7 @@ function ButtonHandler({
               }
             }}
           >
-            continue
+            {loading ? "continue..." : "continue"}
           </Button>
           <div>
             already have an account?{" "}
@@ -67,10 +65,10 @@ function ButtonHandler({
         <div className="w-full flex flex-col gap-3 items-center">
           <Button
             type="submit"
-            className="w-full bg-[hsl(var(--primary))]/80 border py-1 cursor-pointer"
-            variant="default"
+            disabled={loading}
+            className="w-full cursor-pointer"
           >
-            create an account
+            {loading ? "creating…" : "create an account"}
           </Button>
           <div>
             already have an account?{" "}

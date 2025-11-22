@@ -54,7 +54,7 @@ const layout = async ({ children }: props) => {
     );
   }
 
-  return redirect("/n");
+  return redirect("/dashboard");
 };
 
 export default layout;
