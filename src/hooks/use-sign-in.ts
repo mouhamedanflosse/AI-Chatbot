@@ -74,8 +74,10 @@ const useSignInForm = () => {
         toast.error(errorMap[code]);
         router.push("/dashboard");
       } else if (code && errorMap[code]) {
+        console.log("error", errorMap[code]);
         toast.error(errorMap[code]);
       } else {
+        console.log("error", message);
         toast.error(message || "Something went wrong. Please try again.");
       }
     } finally {

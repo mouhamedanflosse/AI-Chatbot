@@ -27,10 +27,19 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Providers>
-          {children}
-          <Toaster />
-        </Providers>
+        <Providers>{children}</Providers>
+        <Toaster
+          theme="dark" // or "dark", "system"
+          position="top-right"
+          toastOptions={{
+            style: {
+              background: "hsl(var(--accent))",
+              color: "hsl(var(--card-foreground))",
+              border: "1px solid hsl(var(--border))",
+              backdropFilter: "blur(4px)",
+            },
+          }}
+        />
       </body>
     </html>
   );
