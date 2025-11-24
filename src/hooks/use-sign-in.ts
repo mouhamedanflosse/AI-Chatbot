@@ -1,17 +1,17 @@
 "use client";
 
 import { useSignIn } from "@clerk/nextjs";
-import { useState } from "react";
-import { toast } from "sonner";
-import { UserLoginSchema, UserLoginProps } from "@afs/schems/auth-schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { ClerkAPIResponseError } from "@clerk/types";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { ClerkAPIResponseError } from "@clerk/types";
+import { toast } from "sonner";
+import { useForm } from "react-hook-form";
+import { UserLoginProps, UserLoginSchema } from "@afs/schems/auth-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 const useSignInForm = () => {
-  const [loading, setLoading] = useState(false);
-  const { isLoaded, setActive, signIn } = useSignIn();
+  const [loading, setLoading] = useState<boolean>(false);
+  const { isLoaded, signIn, setActive } = useSignIn();
   const router = useRouter();
 
   const methods = useForm<UserLoginProps>({
@@ -20,25 +20,26 @@ const useSignInForm = () => {
   });
 
   const onHandleSubmit = methods.handleSubmit(async (values) => {
+    setLoading(true);
+
     if (!isLoaded || !signIn) {
       toast.error("Authentication service is not ready. Please try again.");
       return;
     }
-
     try {
-      setLoading(true);
-
-      const result = await signIn.create({
+      const user = await signIn.create({
         identifier: values.email,
         password: values.password,
       });
 
-      switch (result.status) {
+      switch (user.status) {
         case "complete":
-          console.log("complete");
-          await setActive({ session: result.createdSessionId });
           router.push("/dashboard");
-          console.log("redirection done");
+          setActive({ session: user.createdSessionId });
+          return;
+
+        case "needs_first_factor":
+          toast.error("please complete the registeration proccess");
           return;
 
         case "needs_first_factor":
@@ -52,12 +53,13 @@ const useSignInForm = () => {
           return;
 
         default:
-          console.warn("Unhandled sign-in status:", result.status);
+          console.warn("Unhandled sign-in status:", user.status);
           toast.error("Unexpected authentication state.");
           return;
       }
     } catch (error) {
       const err = error as ClerkAPIResponseError;
+
       const code = err.errors?.[0]?.code;
       const message = err.errors?.[0]?.longMessage;
 
@@ -74,11 +76,10 @@ const useSignInForm = () => {
         toast.error(errorMap[code]);
         router.push("/dashboard");
       } else if (code && errorMap[code]) {
-        console.log("error", errorMap[code]);
         toast.error(errorMap[code]);
+        return;
       } else {
-        console.log("error", message);
-        toast.error(message || "Something went wrong. Please try again.");
+        toast.error(message || "something went wrong !");
       }
     } finally {
       setLoading(false);
