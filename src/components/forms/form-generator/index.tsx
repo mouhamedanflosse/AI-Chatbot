@@ -61,7 +61,6 @@ const FormGenerator = ({
             errors={errors}
             name={name}
             render={({ message }) => (
-              console.log("am here", message),
               (
                 <p className="text-red-400 mt-2">
                   {message === "Required" ? "" : message}

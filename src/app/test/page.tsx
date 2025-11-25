@@ -1,11 +1,18 @@
 "use client";
 import { Card, CardContent, CardDescription } from "@afs/components/ui/card";
 import { Input } from "@afs/components/ui/input";
-import { Label } from "@afs/components/ui/label";
-import { cn } from "@afs/lib/utils";
+import { Button } from "@afs/components/ui/button";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { User } from "lucide-react";
 import React, { useState } from "react";
-import { FieldValues, useForm, UseFormRegister } from "react-hook-form";
+import {
+  FieldValues,
+  FormProvider,
+  useForm,
+  UseFormRegister,
+} from "react-hook-form";
+import z from "zod";
+import { ErrorMessage } from "@hookform/error-message";
 
 type Props = {
   value: string;
@@ -18,55 +25,87 @@ type Props = {
 
 const value = "test value";
 
+type testProps = {
+  email: string;
+  password: string;
+};
+
+const schema = z.object({
+  email: z.email({ error: "invalid email" }),
+  password: z
+    .string()
+    .min(8, "should be more then 8 charcteres")
+    .max(64, "it must be less than 64 charcteres"),
+});
+
 const UserTypeCard = () => {
+  const methods = useForm<testProps>({
+    resolver: zodResolver(schema),
+    mode: "onChange",
+  });
+
+  const OurAsyncOp = () => {
+    console.log("done !");
+  };
+
   const {
     register,
-    setValue,
     formState: { errors },
-  } = useForm();
-
-  const [onUser, setOnUser] = useState<string>("owner");
-
-  console.log(onUser);
-
+    setValue,
+  } = methods;
   return (
-    <Label htmlFor={value} className="mt-6">
+    <FormProvider {...methods}>
       <Card>
         <CardContent className="flex justify-between p-2">
           <div className="flex items-center gap-3">
             <Card>
               <User size={30} />
             </Card>
-            <div className="">
-              <CardDescription className="text-iridium">walo</CardDescription>
-              <CardDescription className="text-gray-200">walo</CardDescription>
-            </div>
+            <div className="">test</div>
           </div>
           <div>
-            <div>
+            <form onSubmit={methods.handleSubmit(OurAsyncOp)}>
               <Input
-                {...register("type", {
-                  onChange: (event) => setOnUser(event.target.value),
+                type="email"
+                placeholder="name@company.com"
+                {...register("email", {
+                  onChange: (e) => setValue("email", e.target.value),
                 })}
-                value={value}
-                id={onUser}
-                className=""
-                type="radio"
+              />
+              <ErrorMessage
+                errors={errors}
+                name="email"
+                render={({ message }) => (
+                  <p className="text-red-400 mt-2">
+                    {message === "Required" ? "" : message}
+                  </p>
+                )}
               />
               <Input
-                {...register("throwVal", {
-                  onChange: (event) => setOnUser(value),
+                type="password"
+                placeholder="password"
+                {...register("password", {
+                  onChange: (e) => setValue("password", e.target.value),
                 })}
-                value={onUser}
-                id={value}
-                className=""
-                type="text"
               />
-            </div>
+              <ErrorMessage
+                errors={errors}
+                name="password"
+                render={({ message }) => (
+                  <p className="text-red-400 mt-2">
+                    {message === "Required" ? "" : message}
+                  </p>
+                )}
+              />
+
+              <Button variant="outline" type="submit">
+                submit
+              </Button>
+            </form>
           </div>
         </CardContent>
       </Card>
-    </Label>
+    </FormProvider>
   );
 };
 

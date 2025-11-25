@@ -1,7 +1,6 @@
 "use client";
 
 import {
-  UserLoginProps,
   UserRegistrationProps,
   UserRegistrationSchema,
 } from "@afs/schems/auth-schema";
@@ -32,6 +31,7 @@ const useSignUpForm = () => {
       toast.error("Authentication service is not ready. Please try again.");
       return;
     }
+
     try {
       setLoading(true);
       const result = await signUp.attemptEmailAddressVerification({
