@@ -1,11 +1,17 @@
+// lib/prisma.ts
 import { PrismaClient } from '@afs/generated/prisma/client'
-import { withAccelerate } from '@prisma/extension-accelerate'
+import { PrismaNeon } from '@prisma/adapter-neon'
 
 const globalForPrisma = global as unknown as { 
     prisma: PrismaClient
 }
 
-const client = globalForPrisma.prisma || new PrismaClient().$extends(withAccelerate())
+const createPrismaClient = () => {
+  const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL! })
+  return new PrismaClient({ adapter })
+}
+
+const client = globalForPrisma.prisma || createPrismaClient()
 
 if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = client
 

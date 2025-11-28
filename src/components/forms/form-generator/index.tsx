@@ -21,7 +21,7 @@ type Props = {
   label?: string;
   placeholder: string;
   register: UseFormRegister<any>;
-  name: string;
+  name: keyof UserRegistrationProps;
   errors: FieldErrors<FieldValues>;
   lines?: number;
   form?: string;
