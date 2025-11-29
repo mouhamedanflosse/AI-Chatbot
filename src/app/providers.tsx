@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import { Button } from "@afs/components/ui/button";
 import Link from "next/link";
 import { Toaster } from "@afs/components/ui/sonner";
+import Navbar from "@afs/components/navbar/navbar";
 
 export const metadata: Metadata = {
   title: "Clerk Next.js Quickstart",
@@ -36,6 +37,7 @@ export default function Providers({
     >
       <ClerkProvider>
         <header className="flex justify-end items-center p-4 gap-4 h-16">
+          <Navbar />
           <SignedOut>
             {path !== "/auth/sign-in" && (
               <Button className="px-6">
