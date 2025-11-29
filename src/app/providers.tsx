@@ -38,7 +38,7 @@ export default function Providers({
       <ClerkProvider>
         <header className="flex justify-end items-center p-4 gap-4 h-16">
           <Navbar />
-          <SignedOut>
+          {/* <SignedOut>
             {path !== "/auth/sign-in" && (
               <Button className="px-6">
                 <Link href="/auth/sign-in">Sign n</Link>
@@ -49,7 +49,7 @@ export default function Providers({
                 <Link href="/auth/sign-up">Sign Up</Link>
               </Button>
             )}
-          </SignedOut>
+          </SignedOut> */}
           <SignedIn>
             <UserButton />
           </SignedIn>

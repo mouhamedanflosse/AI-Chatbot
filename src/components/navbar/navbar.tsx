@@ -57,22 +57,55 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu panel */}
+        {/* Mobile full-screen overlay panel */}
         {open && (
-          <div className="md:hidden mt-2 rounded-lg border bg-white/60 p-3 shadow-sm dark:bg-zinc-900/70">
-            <ul className="flex flex-col gap-2 text-base">
-              {NAV_ITEMS.map((item) => (
-                <li key={item.label}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-zinc-800"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          <div className="md:hidden fixed inset-0 z-50 flex flex-col bg-white/95 dark:bg-zinc-900/95 backdrop-blur-sm">
+            <div className="flex items-center justify-between px-5 py-4 border-b border-zinc-200 dark:border-zinc-800">
+              <Link href="/" className="inline-flex items-center no-underline">
+                <span className="sr-only">afs home</span>
+                <span className="logo-font bg-clip-text text-2xl font-extrabold text-transparent bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-700">
+                  afs
+                </span>
+              </Link>
+
+              <button
+                aria-label="Close menu"
+                onClick={() => setOpen(false)}
+                className="inline-flex items-center justify-center rounded-md p-2 text-neutral-700 hover:bg-gray-100 hover:text-neutral-900 dark:text-neutral-200"
+              >
+                <X className="h-6 w-6" />
+              </button>
+            </div>
+
+            <div className="flex flex-1 flex-col items-center justify-center px-6">
+              <ul className="flex w-full max-w-md flex-col items-stretch gap-4 text-lg font-medium text-neutral-800 dark:text-neutral-100">
+                {NAV_ITEMS.map((item) => (
+                  <li key={item.label}>
+                    <Link
+                      href={item.href}
+                      onClick={() => setOpen(false)}
+                      className="block w-full rounded-lg px-4 py-4 text-center hover:bg-slate-100 dark:hover:bg-zinc-800"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 w-full max-w-md">
+                <Link
+                  href="/dashboard"
+                  onClick={() => setOpen(false)}
+                  className="block w-full rounded-md bg-[hsl(var(--primary))] px-6 py-3 text-center text-[hsl(var(--primary-foreground))] font-semibold shadow-sm"
+                >
+                  Free Trial
+                </Link>
+              </div>
+            </div>
+
+            <div className="px-6 py-4 text-center text-sm text-neutral-500 dark:text-neutral-400">
+              © {new Date().getFullYear()} afs — All rights reserved
+            </div>
           </div>
         )}
       </nav>
