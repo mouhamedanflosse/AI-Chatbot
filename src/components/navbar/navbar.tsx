@@ -45,6 +45,16 @@ export default function Navbar() {
             ))}
           </ul>
 
+          {/* Desktop CTA */}
+          <div className="hidden md:flex md:items-center md:ml-4">
+            <Link
+              href="/sign-in"
+              className="inline-flex items-center rounded-sm px-4 py-2 bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] font-semibold shadow-sm hover:opacity-95"
+            >
+              Free Trial
+            </Link>
+          </div>
+
           {/* Mobile actions */}
           <div className="md:hidden">
             <button
@@ -94,7 +104,7 @@ export default function Navbar() {
 
               <div className="mt-8 w-full max-w-md">
                 <Link
-                  href="/dashboard"
+                  href="/sign-in"
                   onClick={() => setOpen(false)}
                   className="block w-full rounded-md bg-[hsl(var(--primary))] px-6 py-3 text-center text-[hsl(var(--primary-foreground))] font-semibold shadow-sm"
                 >
