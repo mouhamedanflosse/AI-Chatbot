@@ -37,7 +37,6 @@ export default function Providers({
     >
       <ClerkProvider>
         <header className="flex justify-end items-center p-4 gap-4 h-16">
-          <Navbar />
           {/* <SignedOut>
             {path !== "/auth/sign-in" && (
               <Button className="px-6">

@@ -1,11 +1,11 @@
 "use client";
-import { Menu } from "@afs/components/custom/admin-panel/menu";
-import { SidebarToggle } from "@afs/components/custom/admin-panel/sidebar-toggle";
+import { Menu } from "@afs/components/admin-panel/menu";
+import { SidebarToggle } from "@afs/components/admin-panel/sidebar-toggle";
 import { Button } from "@afs/components/ui/button";
 import { useSidebar } from "@afs/hooks/use-sidebar";
 import { useStore } from "@afs/hooks/use-store";
 import { cn } from "@afs/lib/utils";
-import {  ServerCrash } from "lucide-react";
+import { ServerCrash } from "lucide-react";
 import Link from "next/link";
 
 export function Sidebar() {
@@ -44,7 +44,13 @@ export function Sidebar() {
                   : "translate-x-0 opacity-100"
               )}
             >
-              SavvyVault
+              <div className="flex items-center">
+                <span className="sr-only">afs home</span>
+                <span className="logo-font bg-clip-text text-3xl font-extrabold text-transparent tracking-tight bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-700">
+                  afs
+                </span>
+                <span className="ml-2 -mt-1 text-cyan-400/80">❦</span>
+              </div>
             </h1>
           </Link>
         </Button>

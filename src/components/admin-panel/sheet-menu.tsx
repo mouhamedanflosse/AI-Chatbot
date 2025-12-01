@@ -2,7 +2,7 @@ import Link from "next/link";
 import { MenuIcon, ServerCrash } from "lucide-react";
 
 import { Button } from "@afs/components/ui/button";
-import { Menu } from "@afs/components/custom/admin-panel/menu";
+import { Menu } from "@afs/components/admin-panel/menu";
 import {
   Sheet,
   SheetHeader,
@@ -28,7 +28,7 @@ export function SheetMenu() {
           >
             <Link href="/dashboard" className="flex items-center gap-2">
               <ServerCrash className="w-6 h-6 mr-1" />
-              <SheetTitle className="font-bold text-lg">SavvyVault</SheetTitle>
+              <SheetTitle className="font-bold text-lg">afs</SheetTitle>
             </Link>
           </Button>
         </SheetHeader>

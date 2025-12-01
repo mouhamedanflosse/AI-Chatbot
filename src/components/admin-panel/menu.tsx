@@ -8,7 +8,7 @@ import { cn } from "@afs/lib/utils";
 import { getMenuList } from "@afs/lib/menu-list";
 import { Button } from "@afs/components/ui/button";
 import { ScrollArea } from "@afs/components/ui/scroll-area";
-import { CollapseMenuButton } from "@afs/components/custom/admin-panel/collapse-menu-button";
+import { CollapseMenuButton } from "@afs/components/admin-panel/collapse-menu-button";
 import {
   Tooltip,
   TooltipTrigger,
