@@ -8,7 +8,7 @@ import {
   SheetHeader,
   SheetContent,
   SheetTrigger,
-  SheetTitle
+  SheetTitle,
 } from "@afs/components/ui/sheet";
 
 export function SheetMenu() {
@@ -27,8 +27,13 @@ export function SheetMenu() {
             asChild
           >
             <Link href="/dashboard" className="flex items-center gap-2">
-              <ServerCrash className="w-6 h-6 mr-1" />
-              <SheetTitle className="font-bold text-lg">afs</SheetTitle>
+              <SheetTitle className="flex items-center">
+                <span className="sr-only">afs home</span>
+                <span className="logo-font bg-clip-text text-3xl font-extrabold text-transparent tracking-tight bg-gradient-to-r from-cyan-400 via-sky-500 to-blue-700">
+                  afs
+                </span>
+                <span className="ml-2 -mt-1 text-cyan-400/80">❦</span>
+              </SheetTitle>
             </Link>
           </Button>
         </SheetHeader>
