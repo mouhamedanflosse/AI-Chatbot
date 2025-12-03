@@ -89,7 +89,7 @@ export default function LoginForm({ methods, onHandleSubmit, loading }: Props) {
                 </Button>
                 <p>
                   Don’t have an account?{" "}
-                  <Link href="/auth/sign-up" className="font-bold text-[hsl(var(--primary))]">
+                  <Link href="/auth/sign-up" className="font-bold text-primary">
                     Create one
                   </Link>
                 </p>

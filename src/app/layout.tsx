@@ -29,13 +29,13 @@ export default function RootLayout({
       <body>
         <Providers>{children}</Providers>
         <Toaster
-          theme="dark" // or "dark", "system"
+          theme="dark"
           position="top-right"
           toastOptions={{
             style: {
-              background: "hsl(var(--accent))",
-              color: "hsl(var(--card-foreground))",
-              border: "1px solid hsl(var(--border))",
+              background: "hsl(200 95% 30%)",
+              // color: "hsl(218 17% 12%)", 
+              // border: "1px solid hsl(210 16% 92%)", 
               backdropFilter: "blur(4px)",
             },
           }}

@@ -35,7 +35,7 @@ function ButtonHandler({
         <div className="w-full flex flex-col gap-3 items-center">
           <Button
             type="button"
-            className="w-full bg-[hsl(var(--primary))]/80 border py-1 cursor-pointer"
+            className="w-full bg-primary/80 border py-1 cursor-pointer"
             variant="default"
             disabled={loading}
             onClick={() => {
@@ -54,7 +54,7 @@ function ButtonHandler({
           </Button>
           <div>
             already have an account?{" "}
-            <span className="text-[hsl(var(--primary))] font-bold">
+            <span className="text-primary font-bold">
               <Link href="/auth/sign-in">Log in</Link>
             </span>
           </div>
@@ -72,7 +72,7 @@ function ButtonHandler({
           </Button>
           <div>
             already have an account?{" "}
-            <span className="text-[hsl(var(--primary))] font-bold">
+            <span className="text-primary font-bold">
               <Link href="/auth/sign-in">Log in</Link>
             </span>
           </div>
@@ -83,7 +83,7 @@ function ButtonHandler({
   return (
     <div className="w-full flex flex-col items-center gap-2">
       <Button
-        className="w-full bg-[hsl(var(--primary))]/80 border py-1 cursor-pointer"
+        className="w-full bg-primary/80 border py-1 cursor-pointer"
         variant="default"
         onClick={() => setCurrentStep(2)}
       >
@@ -91,7 +91,7 @@ function ButtonHandler({
       </Button>
       <div>
         already have an account?{" "}
-        <span className="text-[hsl(var(--primary))] font-bold">
+        <span className="text-primary font-bold">
           <Link href="/auth/sign-in">Log in</Link>
         </span>
       </div>
