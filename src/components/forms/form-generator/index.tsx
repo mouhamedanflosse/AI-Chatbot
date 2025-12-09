@@ -20,7 +20,7 @@ type Props = {
   options?: { value: string; label: string; id: string }[];
   label?: string;
   placeholder: string;
-  register: UseFormRegister<any>;
+  register: UseFormRegister<UserRegistrationProps>;
   name: keyof UserRegistrationProps;
   errors: FieldErrors<FieldValues>;
   lines?: number;
