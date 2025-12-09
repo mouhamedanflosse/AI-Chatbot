@@ -1,13 +1,15 @@
 import { getUserPlan } from '@afs/actions/settings'
 import React from 'react'
 
-export default function billingSettings() {
+const  billingSettings = async () => {
 
-    const plan = getUserPlan()
+    const plan = await getUserPlan()
+
 
   return (
     <div>
-      hello world
     </div>
   )
 }
+
+export default billingSettings
