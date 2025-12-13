@@ -1,15 +1,26 @@
-import { getUserPlan } from '@afs/actions/settings'
-import React from 'react'
+import { getUserPlan } from "@afs/actions/settings";
+import React from "react";
 
-const  billingSettings = async () => {
+// type subscription =  {
+//         plan: string | null;
+//       } | null; ||
+//       _count: {
+//         domains: number;
+//       };
 
-    const plan = await getUserPlan()
+//  type errorResponse = {
+//       status: number;
+//       message: string;
+//     }
 
+const billingSettings = async () => {
+  const plan = await getUserPlan();
 
-  return (
-    <div>
-    </div>
-  )
-}
+  if (!plan) {
+    return <div>No plan found</div>;
+  }
 
-export default billingSettings
+  return <div>it works</div>;
+};
+
+export default billingSettings;
