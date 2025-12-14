@@ -16,11 +16,11 @@ import React from "react";
 const billingSettings = async () => {
   const plan = await getUserPlan();
 
-  if (!plan) {
+  if (!plan?.subscription?.plan) {
     return <div>No plan found</div>;
   }
 
-  return <div>it works</div>;
+  return <div>{plan?.subscription?.plan}</div>;
 };
 
 export default billingSettings;

@@ -38,8 +38,9 @@ export const getUserPlan = async () => {
 
     if (plan) return plan;
   } catch (error) {
-    const err = error as errorResponse;
-    if (err?.code && err.code == 401) return { status: 401, message: err.message };
-    return { status: 400, message: "bad requsts LOL" };
+    console.log("error getting user plan:", error)
+    // const err = error as errorResponse;
+    // if (err?.code && err.code == 401) return { status: 401, message: err.message };
+    // return { status: 400, message: "bad requsts LOL" };
   }
 };
