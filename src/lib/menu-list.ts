@@ -43,31 +43,41 @@ export function getMenuList(pathname: string): Group[] {
       ]
     },
     {
-      groupLabel: "Contents",
+      groupLabel: "menu",
       menus: [
         {
-          href: "/domains",
-          label: "domains",
+          href: "/conversations",
+          label: "conversations",
           icon: Bookmark
         },
         {
-          href: "/customers",
-          label: "customers",
-          icon: Trash
+          href: "/settings",
+          label: "Customers",
+          icon: Bookmark
+        },
+        {
+          href: "/appointments",
+          label: "Appointments",
+          icon: Bookmark
+        },
+        {
+          href: "/email-marketing",
+          label: "Email Marketing",
+          icon: Bookmark
         }
       ]
     },
     {
-      groupLabel: "Settings",
+      groupLabel: "Domians",
       menus: [
         {
-          href: "/staff",
-          label: "staff",
+          href: "/domain-1",
+          label: "domain 1",
           icon: Users
         },
         {
-          href: "/account",
-          label: "Account",
+          href: "/domain-2",
+          label: "Domain 2",
           icon: Settings
         }
       ]

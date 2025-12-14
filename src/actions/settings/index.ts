@@ -3,11 +3,6 @@
 import client from "@afs/lib/prisma";
 import { currentUser } from "@clerk/nextjs/server";
 
-type errorResponse = {
-  code: number;
-  message: string;
-};
-
 export const getUserPlan = async () => {
   try {
     const user = await currentUser();
