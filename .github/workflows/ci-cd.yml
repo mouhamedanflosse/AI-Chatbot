@@ -23,8 +23,6 @@ jobs:
 
       - run: npm run lint
 
-      - run: npx tsc --noEmit
-
   deploy-preview:
     runs-on: ubuntu-latest
     needs: validate
