@@ -18,6 +18,8 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - run: npm run lint
 
@@ -30,6 +32,19 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - run: npm ci
+        env:
+          DATABASE_URL: ${{ secrets.PREVIEW_DATABASE_URL }}
+
+      - run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.PREVIEW_DATABASE_URL }}
 
       - uses: amondnet/vercel-action@v25
         id: vercel-deploy
@@ -61,6 +76,8 @@ jobs:
           cache: 'npm'
 
       - run: npm ci
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - run: npx prisma migrate deploy
         env:
