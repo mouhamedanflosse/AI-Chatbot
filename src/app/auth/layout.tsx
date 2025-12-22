@@ -2,8 +2,9 @@ import { currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import React from "react";
 import Image from "next/image";
-import dashboard from "../../assets/images/dashboard.png";
-import logo from "../../assets/images/logo.png";
+import logo from "@afs/assets/images/logo.png"
+import dashboard from "@afs/assets/images/dashboard.png"
+
 type props = {
   children: React.ReactNode;
 };
