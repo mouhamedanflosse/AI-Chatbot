@@ -105,6 +105,13 @@ const UserTypeCard = () => {
           </div>
         </CardContent>
       </Card>
+
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati,
+        assumenda sit, est distinctio vitae totam earum numquam eligendi at
+        nihil ad veritatis sapiente explicabo. Odit sit et accusantium hic
+        magnam.
+      </p>
     </FormProvider>
   );
 };
