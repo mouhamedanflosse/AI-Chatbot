@@ -62,8 +62,8 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: `## 🚀 Preview Deployment Complete!
-              **✅ Your changes are live in the preview environment.**
-              🔗 **Preview URL:** ${{ steps.vercel-deploy.outputs.preview-url }}
+              ✅ Your changes are live in the preview environment.
+              🔗 Preview URL: ${{ steps.vercel-deploy.outputs.preview-url }}
               ---
               📝 Give it a spin and let us know your thoughts before merging! ✨`
             })
